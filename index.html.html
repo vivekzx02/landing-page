@@ -1,0 +1,817 @@
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vivek's Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
+    <style>
+        :root {
+            --bg: #111;
+            --card-bg: #181818;
+            --primary: #fff;
+            --secondary: #e0e0e0;
+            --accent: #fff;
+            --text: #fff;
+            --text-soft: #bdbdbd;
+            --border: #222;
+            --shadow: 0 4px 24px 0 rgba(0,0,0,0.18);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            min-height: 100vh;
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', Arial, sans-serif;
+            line-height: 1.6;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 68px;
+            background: var(--bg);
+            padding: 0 32px;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1.5px solid var(--border);
+        }
+        .nav-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            letter-spacing: 1px;
+        }
+        nav ul {
+            display: flex;
+            gap: 22px;
+        }
+        nav ul li {
+            list-style: none;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text);
+            font-size: 15px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            padding: 6px 14px;
+            border-radius: 6px;
+            transition: background 0.2s, color 0.2s;
+        }
+        nav ul li a:hover, nav ul li a.active {
+            background: #fff;
+            color: #111;
+        }
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+        .nav-toggle span {
+            height: 3px;
+            width: 25px;
+            background: var(--primary);
+            margin: 4px 0;
+            border-radius: 2px;
+            transition: 0.4s;
+        }
+        @media (max-width: 900px) {
+            nav ul { gap: 10px; }
+        }
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                background: var(--bg);
+                position: absolute;
+                top: 68px;
+                right: 0;
+                width: 180px;
+                display: none;
+                box-shadow: var(--shadow);
+            }
+            nav ul.active { display: flex; }
+            .nav-toggle { display: flex; }
+            nav { padding: 0 10px; }
+        }
+        /* Hero Section */
+        .hero-modern {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 80vh;
+            padding: 0 5vw;
+            gap: 60px;
+            background: var(--bg);
+        }
+        .hero-content-modern {
+            flex: 1 1 340px;
+            min-width: 220px;
+            max-width: 600px;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+        .hero-greeting {
+            font-size: 1.05rem;
+            color: #fff;
+            font-weight: 600;
+            letter-spacing: 2px;
+            margin-bottom: 2px;
+            text-transform: uppercase;
+        }
+        .hero-title {
+            font-size: 2.7rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            margin-bottom: 0;
+            color: #fff;
+            line-height: 1.1;
+        }
+        .hero-title .purple {
+            color: #fff;
+            background: #111;
+            padding: 0 8px;
+            border-radius: 6px;
+        }
+        .hero-typed {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+        .hero-desc {
+            font-size: 1.08rem;
+            color: var(--text-soft);
+            line-height: 1.7;
+            background: #181818;
+            border-radius: 12px;
+            padding: 18px 20px 14px 20px;
+            box-shadow: var(--shadow);
+        }
+        .hero-btns {
+            display: flex;
+            gap: 18px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+        .btn, .btn-hire{
+            display: inline-block;
+            padding: 12px 32px;
+            background-color: #fff;
+            border: none;
+            border-radius:40px;
+            box-shadow: var(--shadow);
+            font-size: 1rem;
+            color: #111;
+            font-weight: 600;
+            transition: .3s;
+            text-decoration: none;
+        }
+        .btn-hire { background: #111; color: #fff; border: 2px solid #fff; }
+        .btn:hover, .btn-hire:hover{
+            background-color: #fff;
+            color: #111;
+            border: 2px solid #fff;
+            transform: translateY(-2px) scale(1.03);
+        }
+        .hero-image-modern-wrap {
+            flex: 1 1 320px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-width: 160px;
+        }
+        .hero-image-modern {
+            width: 100%;
+            max-width: 320px;
+            min-width: 120px;
+            border-radius: 50%;
+            box-shadow: var(--shadow);
+            background: #181818;
+            border: 6px solid #fff;
+            object-fit: cover;
+        }
+        @media (max-width: 1000px) {
+            .hero-modern {
+                flex-direction: column-reverse;
+                gap: 40px;
+                padding: 40px 3vw 30px 3vw;
+                min-height: unset;
+            }
+            .hero-content-modern, .hero-image-modern-wrap {
+                max-width: 98vw;
+                text-align: center;
+                align-items: center;
+            }
+            .hero-image-modern {
+                margin-bottom: 20px;
+            }
+        }
+        @media (max-width: 600px) {
+            .hero-modern {
+                padding: 18px 2vw 18px 2vw;
+                margin: 18px 0;
+                border-radius: 12px;
+                gap: 22px;
+            }
+            .hero-title {
+                font-size: 1.4rem;
+            }
+            .hero-typed {
+                font-size: 1.05rem;
+            }
+            .hero-desc {
+                font-size: 0.98rem;
+                padding: 12px 8px 10px 8px;
+                margin-bottom: 18px;
+            }
+            .hero-btns {
+                gap: 10px;
+            }
+            .hero-image-modern {
+                max-width: 70vw;
+                min-width: 80px;
+            }
+        }
+        /* Section Container */
+        .section-divider {
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #fff 40%, transparent 100%);
+            margin: 40px 0 30px 0;
+            opacity: 0.08;
+        }
+        .container {
+            width: 95%;
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: transparent;
+        }
+        h2 {
+            color: #fff;
+            font-size: 2.2rem;
+            text-transform: uppercase;
+            text-align: center;
+            margin-bottom: 40px;
+            letter-spacing: 2px;
+            font-weight: 800;
+        }
+        .section {
+            padding: 50px 0 30px 0;
+            background-color: transparent;
+            margin-bottom: 20px;
+        }
+        /* Card Layouts */
+        .card-list {
+            display: flex;
+            justify-content: space-between;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+        .card-item {
+            background: var(--card-bg);
+            border-radius: 14px;
+            box-shadow: var(--shadow);
+            width: 32%;
+            min-width: 260px;
+            padding: 24px 18px 18px 18px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1.5px solid var(--border);
+        }
+        .card-item:hover {
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 8px 32px 0 rgba(255,255,255,0.08);
+            border: 1.5px solid #fff;
+        }
+        .card-item img {
+            max-width: 100%;
+            border-radius: 10px;
+            margin-bottom: 18px;
+            box-shadow: 0 2px 12px rgba(255,255,255,0.04);
+        }
+        .card-item h3 {
+            margin: 15px 0 10px 0;
+            font-size: 1.2rem;
+            color: #fff;
+            letter-spacing: 1px;
+            font-weight: 700;
+        }
+        .card-desc {
+            color: var(--text-soft);
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+        /* Skills */
+        #skills .card-list {
+            margin-top: 20px;
+        }
+        .skill-bar-bg {
+            width: 100%;
+            background: #222;
+            border-radius: 5px;
+            height: 10px;
+            margin-bottom: 6px;
+            overflow: hidden;
+        }
+        .skill-bar {
+            height: 10px;
+            border-radius: 5px;
+            background: linear-gradient(90deg, #fff 0%, #bdbdbd 100%);
+            transition: width 1s ease;
+        }
+        /* Services */
+        .services {
+            padding: 60px 0;
+            text-align: center;
+            background-color: var(--bg);
+        }
+        .services > p {
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+            color: var(--text-soft);
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 32px;
+        }
+        .service {
+            background: var(--card-bg);
+            padding: 28px 20px 22px 20px;
+            border-radius: 14px;
+            box-shadow: var(--shadow);
+            color: var(--text);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1.5px solid var(--border);
+            text-align: left;
+            position: relative;
+        }
+        .service:hover {
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 8px 32px 0 rgba(255,255,255,0.08);
+            border: 1.5px solid #fff;
+        }
+        .service h3 {
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+            color: #fff;
+            letter-spacing: 1px;
+            font-weight: 700;
+        }
+        .service p {
+            font-size: 1rem;
+            color: var(--text-soft);
+        }
+        /* Contact */
+        .contact-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 80vh;
+            background: var(--bg);
+            padding: 40px 10px;
+        }
+        .contact-container {
+            background: var(--card-bg);
+            border-radius: 18px;
+            box-shadow: var(--shadow);
+            padding: 40px 38px 32px 38px;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+        .contact-title {
+            font-size: 2rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+        .contact-desc {
+            font-size: 1.05rem;
+            line-height: 1.6;
+            color: var(--text-soft);
+            margin-bottom: 28px;
+        }
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 14px;
+            border-radius: 8px;
+            border: 1.5px solid var(--border);
+            background: #181818;
+            color: #fff;
+            font-size: 1rem;
+            margin-bottom: 0;
+            box-shadow: none;
+            transition: border 0.2s, box-shadow 0.2s;
+            outline: none;
+        }
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border: 1.5px solid #fff;
+            box-shadow: 0 0 0 2px #111;
+        }
+        .form-group textarea {
+            resize: vertical;
+            min-height: 90px;
+            max-height: 200px;
+        }
+        .submit-btn {
+            background: #fff;
+            color: #111;
+            border: none;
+            border-radius: 25px;
+            padding: 13px 0;
+            font-size: 1.08rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            transition: background 0.2s, color 0.2s, transform 0.2s;
+            margin-top: 8px;
+        }
+        .submit-btn:hover {
+            background: #111;
+            color: #fff;
+            border: 2px solid #fff;
+            transform: translateY(-2px) scale(1.03);
+        }
+        .contact-social {
+            display: flex;
+            justify-content: center;
+            gap: 18px;
+            margin-top: 30px;
+        }
+        .social-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #181818;
+            padding: 4px;
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+        }
+        .social-icon:hover {
+            transform: scale(1.15) rotate(-8deg);
+            box-shadow: 0 4px 16px rgba(255,255,255,0.10);
+            background: #fff;
+        }
+        /* About */
+        .about-section {
+            width: 80%;
+            margin: 0 auto;
+            padding: 50px;
+            background: var(--card-bg);
+            border-radius: 18px;
+            box-shadow: var(--shadow);
+            margin-bottom: 40px;
+        }
+        .about-section h2 {
+            font-size: 2rem;
+            color: #fff;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .about-section .profile p {
+            font-size: 1.1rem;
+            margin: 20px auto;
+            text-align: center;
+            color: var(--text-soft);
+        }
+        .about-section h3 {
+            font-size: 1.1rem;
+            color: #fff;
+            margin-top: 30px;
+            margin-bottom: 10px;
+            text-align: left;
+            font-weight: 700;
+        }
+        .about-section ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+        }
+        .about-section li {
+            background-color: #222;
+            padding: 12px 20px;
+            border-radius: 5px;
+            font-size: 1rem;
+            color: #fff;
+            box-shadow: var(--shadow);
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .about-section li:hover {
+            background-color: #fff;
+            color: #111;
+        }
+        .about-section .social-links ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .about-section .social-links .social-icon {
+            margin-bottom: 0;
+        }
+        .about-section .contact-info p {
+            font-size: 1.08rem;
+            font-weight: 500;
+            color: #fff;
+        }
+        .footer {
+            background: #111;
+            color: var(--text-soft);
+            text-align: center;
+            padding: 24px 0 16px 0;
+            font-size: 1rem;
+            border-top: 1.5px solid #222;
+            margin-top: 40px;
+        }
+        .footer-links a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 6px;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+        .footer-links a:hover {
+            color: #111;
+            background: #fff;
+            border-radius: 4px;
+            padding: 2px 6px;
+        }
+        @media (max-width: 1000px) {
+            .card-list {
+                flex-direction: column;
+                gap: 28px;
+            }
+            .card-item {
+                width: 100%;
+                min-width: unset;
+            }
+            .about-section {
+                width: 98%;
+                padding: 20px 2px;
+            }
+        }
+        @media (max-width: 600px) {
+            nav {
+                padding: 0 8px;
+            }
+            .container {
+                width: 99%;
+                padding: 0 2vw;
+            }
+            h2 {
+                font-size: 1.3rem;
+                margin-bottom: 30px;
+            }
+            .card-item {
+                padding: 16px 8px;
+            }
+            .about-section {
+                padding: 10px 2px;
+            }
+            .about-section h2 {
+                font-size: 1.3rem;
+            }
+            .about-section li {
+                font-size: 0.98rem;
+                padding: 8px 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav data-aos="fade-down" data-aos-duration="1000">
+            <div class="nav-title">Vivek's Portfolio</div>
+            <div class="nav-toggle" id="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul id="nav-links">
+                <li><a href="#hero" class="active">Home</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="hero-modern" id="hero">
+            <div class="hero-content-modern" data-aos="fade-right" data-aos-duration="1000">
+                <div class="hero-greeting">WELCOME TO MY PORTFOLIO</div>
+                <div class="hero-title">Hi, I'm <span class="purple">Vivek</span></div>
+                <div class="hero-typed">
+                    A passionate <span id="element"></span>
+                </div>
+                <div class="hero-desc">
+                    Creative web designer crafting <span class="purple" style="font-weight:600;">modern</span> and <span class="purple" style="font-weight:600;">user-friendly</span> websites.<br>
+                    Experienced in <span class="purple" style="font-weight:600;">responsive design</span> and web development tools.<br>
+                    Passionate about blending <span class="purple" style="font-weight:600;">aesthetics</span> with <span class="purple" style="font-weight:600;">functionality</span>.
+                </div>
+                <div class="hero-btns">
+                    <a href="C:/Users/Dell/Desktop/RESUME/VIVEK KUMAR.01.pdf" class="btn">Download CV</a>
+                    <a href="#contact" class="btn-hire">Hire me</a>
+                </div>
+            </div>
+            <div class="hero-image-modern-wrap" data-aos="fade-left" data-aos-duration="1000">
+                <img class="hero-image-modern" src="https://avatars.githubusercontent.com/u/9919?s=280&v=4" alt="Profile Image">
+            </div>
+        </section>
+        <section id="projects" class="section">
+            <div class="container">
+                <h2 data-aos="fade-up">Projects</h2>
+                <div class="card-list">
+                    <div class="card-item" data-aos="fade-up" data-aos-delay="100">
+                        <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=400&q=80" alt="Project 1">
+                        <h3>Project One</h3>
+                        <a href="https://example.com" target="_blank" class="btn">View Project</a>
+                    </div>
+                    <div class="card-item" data-aos="fade-up" data-aos-delay="200">
+                        <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=400&q=80" alt="Project 2">
+                        <h3>Project Two</h3>
+                        <a href="https://example.com" target="_blank" class="btn">View Project</a>
+                    </div>
+                    <div class="card-item" data-aos="fade-up" data-aos-delay="300">
+                        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" alt="Project 3">
+                        <h3>Project Three</h3>
+                        <a href="https://example.com" target="_blank" class="btn">View Project</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="skills" class="section">
+            <div class="container">
+                <h2 data-aos="fade-up">Skills</h2>
+                <div class="card-list">
+                    <div class="card-item" data-aos="fade-right" data-aos-delay="100">
+                        <h3>HTML</h3>
+                        <div class="skill-bar-bg">
+                            <div class="skill-bar" style="width: 90%"></div>
+                        </div>
+                    </div>
+                    <div class="card-item" data-aos="fade-right" data-aos-delay="200">
+                        <h3>CSS</h3>
+                        <div class="skill-bar-bg">
+                            <div class="skill-bar" style="width: 80%"></div>
+                        </div>
+                    </div>
+                    <div class="card-item" data-aos="fade-right" data-aos-delay="300">
+                        <h3>JavaScript</h3>
+                        <div class="skill-bar-bg">
+                            <div class="skill-bar" style="width: 30%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="services" id="services">
+            <div class="container">
+                <h2 data-aos="fade-up">Our Services</h2>
+                <p data-aos="fade-up" data-aos-delay="100">
+                    We offer a range of professional services to meet your needs and help you achieve your goals. Check out the services below:
+                </p>
+                <div class="services-grid">
+                    <div class="service" data-aos="fade-up" data-aos-delay="200">
+                        <h3>Web Development</h3>
+                        <p>We build fast, responsive websites that look great on all devices.</p>
+                    </div>
+                    <div class="service" data-aos="fade-up" data-aos-delay="300">
+                        <h3>UI/UX Design</h3>
+                        <p>We design user-friendly interfaces and create smooth user experiences.</p>
+                    </div>
+                    <div class="service" data-aos="fade-up" data-aos-delay="400">
+                        <h3>Mobile App Development</h3>
+                        <p>We develop mobile applications for both iOS and Android platforms.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="contact-section" id="contact">
+            <div class="contact-container" data-aos="zoom-in" data-aos-duration="900">
+                <h2 class="contact-title">Get in <span style="color:var(--accent);">Touch</span></h2>
+                <p class="contact-desc">
+                    Have a project or want to say hello? Fill out the form and I'll get back to you soon!
+                </p>
+                <form class="contact-form" id="whatsappForm" autocomplete="off">
+                    <div class="form-group" data-aos="fade-up" data-aos-delay="100">
+                        <input type="text" id="name" name="name" placeholder="Full Name" required>
+                    </div>
+                    <div class="form-group" data-aos="fade-up" data-aos-delay="200">
+                        <input type="email" id="email" name="email" placeholder="Email Address" required>
+                    </div>
+                    <div class="form-group" data-aos="fade-up" data-aos-delay="300">
+                        <input type="text" id="phone" name="phone" placeholder="Phone Number" required>
+                    </div>
+                    <div class="form-group" data-aos="fade-up" data-aos-delay="400">
+                        <textarea id="message" name="message" placeholder="Your Message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn" data-aos="fade-up" data-aos-delay="500">Send Message</button>
+                </form>
+                <div class="contact-social" data-aos="fade-up" data-aos-delay="600">
+                    <a href="https://instagram.com" target="_blank" title="Instagram" class="social-icon" aria-label="Instagram">
+                        <svg width="24" height="24" fill="none" viewBox="0 0 24 24"><rect width="20" height="20" x="2" y="2" rx="6" stroke="#1a237e" stroke-width="2"/><circle cx="12" cy="12" r="5" stroke="#1a237e" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.5" fill="#1a237e"/></svg>
+                    </a>
+                    <a href="https://facebook.com" target="_blank" title="Facebook" class="social-icon" aria-label="Facebook">
+                        <svg width="24" height="24" fill="none" viewBox="0 0 24 24"><rect width="20" height="20" x="2" y="2" rx="6" stroke="#1976d2" stroke-width="2"/><path d="M15 8h-2a1 1 0 0 0-1 1v2h3l-.5 3h-2.5v7h-3v-7H7v-3h2V9a3 3 0 0 1 3-3h3v3z" fill="#1976d2"/></svg>
+                    </a>
+                    <a href="https://wa.me/8882203035" target="_blank" title="WhatsApp" class="social-icon" aria-label="WhatsApp">
+                        <svg width="24" height="24" fill="none" viewBox="0 0 24 24"><rect width="20" height="20" x="2" y="2" rx="6" stroke="#25d366" stroke-width="2"/><path d="M12 7a5 5 0 0 1 5 5c0 2.76-2.24 5-5 5a5 5 0 0 1-5-5c0-2.76 2.24-5 5-5zm0 10c3.87 0 7-3.13 7-7s-3.13-7-7-7-7 3.13-7 7c0 1.61.55 3.09 1.47 4.27L4 20l4.73-1.47A6.97 6.97 0 0 0 12 17z" fill="#25d366"/></svg>
+                    </a>
+                    <a href="mailto:your-email@gmail.com" target="_blank" title="Gmail" class="social-icon" aria-label="Gmail">
+                        <svg width="24" height="24" fill="none" viewBox="0 0 24 24"><rect width="20" height="20" x="2" y="2" rx="6" stroke="#d93025" stroke-width="2"/><path d="M4 8l8 6 8-6" stroke="#d93025" stroke-width="2"/><path d="M4 8v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8" stroke="#d93025" stroke-width="2"/></svg>
+                    </a>
+                </div>
+            </div>
+        </section>
+        <section class="about-section" id="about">
+            <div class="profile" data-aos="fade-up" data-aos-duration="1000">
+                <h2>Hello! I'm <span style="color:var(--accent);">Vivek</span></h2>
+                <p>
+                    I am a web designer based in New Delhi, currently pursuing a BA in English Hons<br>
+                    from Delhi University. I have a passion for creating beautiful, functional websites<br>
+                    using HTML, CSS, and JavaScript. My journey in web design started as a hobby and soon<br>
+                    turned into a professional interest, and I’m excited to continue growing my skills!
+                </p>
+            </div>
+            <div class="skills" data-aos="fade-up" data-aos-delay="200">
+                <h3>Skills & Expertise</h3>
+                <ul>
+                    <li>HTML</li>
+                    <li>CSS</li>
+                    <li>JavaScript</li>
+                    <li>Basic Computer Skills</li>
+                </ul>
+            </div>
+            <div class="education" data-aos="fade-up" data-aos-delay="300">
+                <h3>Education</h3>
+                <p>Currently pursuing: <strong>BA English Hons</strong> from Delhi University</p>
+                <p>12th Passed</p>
+            </div>
+            <div class="achievements" data-aos="fade-up" data-aos-delay="400">
+                <h3>Achievements</h3>
+                <p>Achieved an English Speaking Certificate from FEA.</p>
+            </div>
+            <div class="contact-info" data-aos="fade-up" data-aos-delay="500">
+                <h3>Contact Info</h3>
+                <p>Phone: <strong>8882203035</strong></p>
+                <p>City: <strong>New Delhi</strong></p>
+            </div>
+            <div class="social-links" data-aos="fade-up" data-aos-delay="600">
+                <h3>Connect with Me</h3>
+                <ul>
+                    <li><a href="https://instagram.com" target="_blank" class="social-icon" aria-label="Instagram"><svg width="24" height="24" fill="none" viewBox="0 0 24 24"><rect width="20" height="20" x="2" y="2" rx="6" stroke="#1a237e" stroke-width="2"/><circle cx="12" cy="12" r="5" stroke="#1a237e" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.5" fill="#1a237e"/></svg></a></li>
+                    <li><a href="https://facebook.com" target="_blank" class="social-icon" aria-label="Facebook"><svg width="24" height="24" fill="none" viewBox="0 0 24 24"><rect width="20" height="20" x="2" y="2" rx="6" stroke="#1976d2" stroke-width="2"/><path d="M15 8h-2a1 1 0 0 0-1 1v2h3l-.5 3h-2.5v7h-3v-7H7v-3h2V9a3 3 0 0 1 3-3h3v3z" fill="#1976d2"/></svg></a></li>
+                    <li><a href="https://wa.me/8882203035" target="_blank" class="social-icon" aria-label="WhatsApp"><svg width="24" height="24" fill="none" viewBox="0 0 24 24"><rect width="20" height="20" x="2" y="2" rx="6" stroke="#25d366" stroke-width="2"/><path d="M12 7a5 5 0 0 1 5 5c0 2.76-2.24 5-5 5a5 5 0 0 1-5-5c0-2.76 2.24-5 5-5zm0 10c3.87 0 7-3.13 7-7s-3.13-7-7-7-7 3.13-7 7c0 1.61.55 3.09 1.47 4.27L4 20l4.73-1.47A6.97 6.97 0 0 0 12 17z" fill="#25d366"/></svg></a></li>
+                    <li><a href="mailto:your-email@gmail.com" target="_blank" class="social-icon" aria-label="Gmail"><svg width="24" height="24" fill="none" viewBox="0 0 24 24"><rect width="20" height="20" x="2" y="2" rx="6" stroke="#d93025" stroke-width="2"/><path d="M4 8l8 6 8-6" stroke="#d93025" stroke-width="2"/><path d="M4 8v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8" stroke="#d93025" stroke-width="2"/></svg></a></li>
+                </ul>
+            </div>
+        </section>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+    <script>
+        AOS.init({
+            duration: 900,
+            once: true
+        });
+        const navToggle = document.getElementById('nav-toggle');
+        const navLinks = document.getElementById('nav-links');
+        navToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        const typed = new Typed('#element', {
+            strings: ['Web Designer', 'Front-End Developer', 'UI/UX Enthusiast'],
+            typeSpeed: 50,
+            backSpeed: 30,
+            loop: true
+        });
+        </script>
+      
+
+        </body>
+        </html>
+
